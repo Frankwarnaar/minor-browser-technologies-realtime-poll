@@ -1,13 +1,17 @@
 <% extend("_base/layout") %>
 
-<section>
-	<h1><%= poll.question %></h1>
+<section data-poll-id="<%= poll.id %>">
+	<h1 data-poll-question="<%= poll.question %>"><%= poll.question %></h1>
 	<ul>
 		<% poll.answers.map(answer => { %>
-			<li>
-				<h2><%= answer.name %></h2>
-				<meter max="<%= poll.votes %>" value="<%= answer.votes %>"></meter>
-				<span><%= answer.votes %></span>
+			<li data-answer="<%= answer.name %>">
+				<h2 data-answer="<%= answer.name %>"><%= answer.name %></h2>
+				<meter data-meter data-answer="<%= answer.name %>" max="<%= poll.votes %>" value="<%= answer.votes %>">
+					<div class="meter">
+						<div class="meter__fill" data-answer="<%= answer.name %>" style="width: <%= answer.votes / poll.votes * 100 %>%"></div>
+					</div>
+				</meter>
+				<span data-votes data-answer="<%= answer.name %>"><%= answer.votes %></span>
 			</li>
 		<% }); %>
 	</ul>

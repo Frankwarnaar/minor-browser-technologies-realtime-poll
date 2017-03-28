@@ -19,7 +19,7 @@ app.use(express.static(baseDir));
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use((req, res, next) => {
-	res.io = io;
+	req.io = io;
 	next();
 });
 

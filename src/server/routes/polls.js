@@ -75,6 +75,8 @@ router.post('/vote', (req, res) => {
 	});
 	polls.update(poll);
 	res.redirect(`/polls/results/${poll.id}`);
+
+	req.io.sockets.emit('poll', poll);
 });
 
 module.exports = router;
