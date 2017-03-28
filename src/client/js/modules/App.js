@@ -16,6 +16,11 @@ class App {
 
 	init() {
 		this.controller.init();
+		this.socket();
+	}
+
+	socket() {
+		const socket = io();
 	}
 }
 
