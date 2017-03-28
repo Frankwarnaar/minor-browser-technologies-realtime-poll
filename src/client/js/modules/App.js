@@ -1,11 +1,14 @@
 class App {
 	constructor() {
 		const Controller = require('./Controller');
+		const View = require('./View');
 
 		this.controller = new Controller(this);
+		this.view = new View(this);
 
 		this.$ = {
-			inputs: document.getElementsByTagName('input')
+			answersContainer: document.getElementById('inputs'),
+			newAnswer: document.getElementById('newInput')
 		};
 
 		this.init();

@@ -5,17 +5,18 @@ class Controller {
 
 	init() {
 		this.bindEvents();
+		if (this.app.$.newAnswer) {
+			this.app.$.newAnswer.className = "";
+		}
 	}
 
 	bindEvents() {
-		const $inputs = Array.from(this.app.$.inputs);
-		$inputs.forEach($input => {
-			$input.addEventListener('keyup', (e) => {
-				if (e.which === 9) {
-					this.app.view.renderInput();
-				}
+		if (this.app.$.newAnswer) {
+			this.app.$.newAnswer.addEventListener('click', (e) => {
+				e.preventDefault();
+				this.app.view.renderInput();
 			});
-		});
+		}
 	}
 }
 

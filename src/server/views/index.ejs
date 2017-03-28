@@ -1,24 +1,24 @@
 <% extend("_base/layout") %>
 
 <form method="POST" action="/polls/create">
+	<label>Vraag
+		<textarea name="question"></textarea>
+	</label>
 	<div id="inputs">
-		<label>Vraag
-			<textarea name="question"></textarea>
-		</label>
 		<label>Antwoord 1
-			<input type="text" name="answer1"/>
+			<input type="text" class="answer-input" name="answer1"/>
 		</label>
 		<label>Antwoord 2
-			<input type="text" name="answer2"/>
+			<input type="text" class="answer-input" name="answer2"/>
 		</label>
 		<label>Antwoord 3
-			<input type="text" name="answer3"/>
+			<input type="text" class="answer-input" name="answer3"/>
 		</label>
 		<label>Antwoord 4
-			<input type="text" name="answer4"/>
+			<input type="text" class="answer-input" name="answer4"/>
 		</label>
 		<label>Antwoord 5
-			<input type="text" name="answer5"/>
+			<input type="text" class="answer-input" name="answer5"/>
 		</label>
 	</div>
 	<button id="newInput" class="hidden">Nieuw antwoord</button>
