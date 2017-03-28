@@ -12,7 +12,7 @@ class Controller {
 		$inputs.forEach($input => {
 			$input.addEventListener('keyup', (e) => {
 				if (e.which === 9) {
-					console.log('tab');
+					this.app.view.renderInput();
 				}
 			});
 		});
