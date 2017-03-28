@@ -1,0 +1,13 @@
+<% extend("_base/layout") %>
+
+<form method="POST" action="/polls/vote">
+	<h1><%= poll.question %></h1>
+	<input type="hidden" value="<%= poll.id %>" name="id"/>
+	<% poll.answers.map(answer => { %>
+		<label>
+			<input type="radio" name="answer" value="<%= answer.name %>"/>
+			<%= answer.name %>
+		</label>
+	<% }); %>
+	<input type="submit" value="Stem">
+</form>

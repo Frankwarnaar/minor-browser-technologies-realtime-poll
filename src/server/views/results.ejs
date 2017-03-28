@@ -1,0 +1,14 @@
+<% extend("_base/layout") %>
+
+<section>
+	<h1><%= poll.question %></h1>
+	<ul>
+		<% poll.answers.map(answer => { %>
+			<li>
+				<h2><%= answer.name %></h2>
+				<meter max="<%= poll.votes %>" value="<%= answer.votes %>"></meter>
+				<span><%= answer.votes %></span>
+			</li>
+		<% }); %>
+	</ul>
+</section>
