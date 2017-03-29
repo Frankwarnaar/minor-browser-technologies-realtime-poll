@@ -40,5 +40,5 @@ io.on('connection', (socket) => {
 app.use('/polls', pollsRouter);
 
 app.get('/', (req, res) => {
-	res.render("index");
+	res.redirect('/polls');
 });

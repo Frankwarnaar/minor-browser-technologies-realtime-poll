@@ -25,6 +25,12 @@ const polls = {
 	}
 };
 
+router.get('/', (req, res) => {
+	res.render("index", {
+		polls: activePolls
+	});
+});
+
 router.post('/create', (req, res) => {
 	const poll = {};
 
