@@ -1,0 +1,19 @@
+body > header {
+	padding: 0 1rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: @nav-height;
+	width: 100%;
+	background: @color-primary;
+
+	a {
+		line-height: @nav-height;
+		color: @color-lightest;
+		border-color: @color-secondary-lighter;
+
+		&:hover {
+			background: rgba(255,255,255,.3);
+		}
+	}
+}

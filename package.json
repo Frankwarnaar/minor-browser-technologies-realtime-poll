@@ -8,7 +8,7 @@
 	"production": "npm run build & node src/server/app.js",
     "server": "nodemon src/server/app.js",
     "expose": "ngrok http 1337",
-    "dev": "nodemon src/server/app.js & npm run watch:js",
+    "dev": "nodemon src/server/app.js & npm run watch",
     "js": "browserify -i src/client/app.js -o build/client/js/bundle.js -t [ babelify --presets [ es2015 ] ]",
     "less": "lessc src/client/styles/app.less build/client/css/app.css",
     "watch:js": "watchify src/client/js/app.js --debug -o build/client/js/bundle.js -t [ babelify --presets [es2015] ]",
