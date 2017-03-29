@@ -6,8 +6,15 @@
 		padding-bottom: 1rem;
 		width: 100%;
 		overflow: hidden;
-	}
 
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+
+		h2 {
+			width: 100%;
+		}
+	}
 
 	h2 {
 		margin-bottom: .325rem;
@@ -15,6 +22,8 @@
 
 	li > p {
 		font-size: @font-size-sm;
+		text-align: right;
+		margin-left: 1rem;
 
 		span {
 			font-size: @font-size-xs;
