@@ -7,3 +7,10 @@ button {
 	font-size: @font-size-base;
 	cursor: pointer;
 }
+
+input[type="submit"] + input[type="submit"],
+button + button,
+button + input[type="submit"],
+input[type="submit"] + button {
+	margin-left: 1rem;
+}

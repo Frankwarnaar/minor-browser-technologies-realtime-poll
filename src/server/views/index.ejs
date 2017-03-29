@@ -28,7 +28,7 @@
 
 <section>
 	<h2>Actieve polls</h2>
-	<ul>
+	<ol>
 		<% polls.map(poll => { %>
 			<li>
 				<h3><%= poll.question %></h3>
@@ -36,7 +36,7 @@
 				<a href="/polls/results/<%= poll.id %>">Resultaten</a>
 			</li>
 		<% }) %>
-	</ul>
+	</ol>
 	<% if (polls.length === 0) { %>
 		<p>Er zijn geen polls actief</p>
 	<% } %>
