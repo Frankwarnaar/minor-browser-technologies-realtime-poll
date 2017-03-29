@@ -6,21 +6,11 @@
 		<textarea name="question"></textarea>
 	</label>
 	<div id="inputs">
-		<label>Antwoord 1
-			<input type="text" class="answer-input" name="answer1"/>
-		</label>
-		<label>Antwoord 2
-			<input type="text" class="answer-input" name="answer2"/>
-		</label>
-		<label>Antwoord 3
-			<input type="text" class="answer-input" name="answer3"/>
-		</label>
-		<label>Antwoord 4
-			<input type="text" class="answer-input" name="answer4"/>
-		</label>
-		<label>Antwoord 5
-			<input type="text" class="answer-input" name="answer5"/>
-		</label>
+		<% for (var i = 1; i<6; i++) { %>
+			<label for="answer<%=i%>">Antwoord <%= i %>
+				<input id="answer<%= i %>" type="text" class="answer-input" name="answer<%= i %>" placeholder="antwoord"/>
+			</label>
+		<% } %>
 	</div>
 	<button id="newInput" class="hidden">Nieuw antwoord</button>
 	<input type="submit" value="Ok">
@@ -28,7 +18,7 @@
 
 <section>
 	<h2>Actieve polls</h2>
-	<ol>
+	<ul>
 		<% polls.map(poll => { %>
 			<li>
 				<h3><%= poll.question %></h3>
@@ -36,7 +26,7 @@
 				<a href="/polls/results/<%= poll.id %>">Resultaten</a>
 			</li>
 		<% }) %>
-	</ol>
+	</ul>
 	<% if (polls.length === 0) { %>
 		<p>Er zijn geen polls actief</p>
 	<% } %>
