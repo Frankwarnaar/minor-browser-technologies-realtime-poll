@@ -21,10 +21,10 @@ class View {
 	}
 
 	renderResults(poll) {
-		const $poll = this.app.getElementsByAttribute('data-poll-id')[0];
-		const $meters = this.app.getElementsByAttribute('data-meter');
-		const $meterFills = Array.from(document.getElementsByClassName('meter__fill'));
-		const $votes = this.app.getElementsByAttribute('data-votes');
+		const $poll = this.app.utils.getElementsByAttribute('data-poll-id')[0];
+		const $meters = this.app.utils.getElementsByAttribute('data-meter');
+		const $meterFills = this.app.utils.arrayFrom(document.getElementsByClassName('meter__fill'));
+		const $votes = this.app.utils.getElementsByAttribute('data-votes');
 
 		if ($poll) {
 			const pollId = $poll.getAttribute('data-poll-id');

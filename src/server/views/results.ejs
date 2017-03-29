@@ -2,6 +2,7 @@
 
 <section data-poll-id="<%= poll.id %>">
 	<h1 data-poll-question="<%= poll.question %>"><%= poll.question %></h1>
+	<p>Totaal: <%= poll.votes %> stemmen</p>
 	<ul class="results">
 		<% poll.answers.map(answer => { %>
 			<li data-answer="<%= answer.name %>">
@@ -11,7 +12,9 @@
 						<div class="meter__fill" data-answer="<%= answer.name %>" style="width: <%= answer.votes / poll.votes * 100 %>%"></div>
 					</div>
 				</meter>
-				<span data-votes data-answer="<%= answer.name %>"><%= answer.votes %> stemmen</span>
+				<p data-votes data-answer="<%= answer.name %>"><%= answer.votes %> stemmen
+					<span>(<%= (answer.votes / poll.votes * 100).toFixed() %>%)</span>
+				</p>
 			</li>
 		<% }); %>
 	</ul>
