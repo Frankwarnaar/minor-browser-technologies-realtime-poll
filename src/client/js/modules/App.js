@@ -45,7 +45,9 @@ class App {
 			});
 		}
 		catch (e) {
-
+			setTimeout(() => {
+				location.reload();
+			}, 10000);
 		}
 	}
 }
