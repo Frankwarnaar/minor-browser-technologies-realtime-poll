@@ -24,9 +24,12 @@ class View {
 		const $poll = this.app.utils.getElementsByAttribute('data-poll-id')[0];
 		const $meters = this.app.utils.getElementsByAttribute('data-meter');
 		const $meterFills = this.app.utils.arrayFrom(document.getElementsByClassName('meter__fill'));
+		const $totalVotes = this.app.utils.getElementsByAttribute('data-poll-votes');
 		const $votes = this.app.utils.getElementsByAttribute('data-votes');
 
 		if ($poll) {
+			$totalVotes[0].innerHTML = poll.votes;
+
 			const pollId = $poll.getAttribute('data-poll-id');
 			if (pollId === poll.id) {
 
@@ -44,7 +47,7 @@ class View {
 
 					$votes.forEach($vote => {
 						if ($vote.getAttribute('data-answer') === answer.name) {
-							$vote.innerHTML = answer.votes;
+							$vote.innerHTML = `${answer.votes} stemmen <span>(${(answer.votes / poll.votes * 100).toFixed()}%)</span>`;
 						}
 					});
 				});

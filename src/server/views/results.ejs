@@ -2,7 +2,7 @@
 
 <section data-poll-id="<%= poll.id %>">
 	<h1 data-poll-question="<%= poll.question %>"><%= poll.question %></h1>
-	<p>Totaal: <%= poll.votes %> stemmen</p>
+	<p>Totaal: <span data-poll-votes><%= poll.votes %></span> stemmen</p>
 	<ul class="results">
 		<% poll.answers.map(answer => { %>
 			<li data-answer="<%= answer.name %>">
