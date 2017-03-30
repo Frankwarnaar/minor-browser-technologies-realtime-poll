@@ -26,7 +26,7 @@ class App {
 
 	socket() {
 		try {
-			const socket = new WebSocket('ws://localhost:8000', 'echo-protocol');
+			const socket = new WebSocket(`ws://${window.location.hostname}:8000`, 'echo-protocol');
 
 			socket.onmessage = (e) => {
 				this.view.renderResults(JSON.parse(e.data));
