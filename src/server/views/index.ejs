@@ -17,17 +17,19 @@
 </form>
 
 <section>
-	<h2>Actieve polls</h2>
-	<ul>
-		<% polls.map(poll => { %>
-			<li>
-				<h3><%= poll.question %></h3>
-				<a href="/polls/get/<%= poll.id %>">Stemmen</a>
-				<a href="/polls/results/<%= poll.id %>">Resultaten</a>
-			</li>
-		<% }) %>
-	</ul>
-	<% if (polls.length === 0) { %>
-		<p>Er zijn geen polls actief</p>
-	<% } %>
+	<div>
+		<h2>Actieve polls</h2>
+		<ul>
+			<% polls.map(poll => { %>
+				<li>
+					<h3><%= poll.question %></h3>
+					<a href="/polls/get/<%= poll.id %>">Stemmen</a>
+					<a href="/polls/results/<%= poll.id %>">Resultaten</a>
+				</li>
+			<% }) %>
+		</ul>
+		<% if (polls.length === 0) { %>
+			<p>Er zijn geen polls actief</p>
+		<% } %>
+	</div>
 </section>
