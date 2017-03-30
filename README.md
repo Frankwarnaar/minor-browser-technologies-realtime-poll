@@ -27,7 +27,9 @@ Meters are supported in every browser but IE. It's supported from IOS Safari 10.
 
 The browser tries to run a socket in a try statement. When this fails, it sets a timeout of `10s`. After this, it makes the pages refresh.
 
-4. If the browsers supports sockets, the results update without refreshing the page
+4. If the browsers supports sockets, the results update without refreshing the page.
+
+Websockets are supported by IE10 > 9. Opera Mini doesn't support it.
 
 ## Accessability issues
 ### Images
