@@ -26,10 +26,12 @@ class App {
 
 	socket() {
 		try {
-			const socket = io();
-			socket.on('poll', poll => {
-				this.view.renderResults(poll);
-			});
+			const socket = new WebSocket('ws://localhost:8000', 'echo-protocol');
+
+			socket.onmessage = (e) => {
+				console.log(JSON.parse(e.data));
+				this.view.renderResults(JSON.parse(e.data));
+			};
 		}
 		catch (e) {
 			setTimeout(() => {

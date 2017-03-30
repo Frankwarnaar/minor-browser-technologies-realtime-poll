@@ -4,8 +4,12 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const http = require('http');
+const WebSocketServer = require('ws').Server;
 
 const app = express();
+const server = http.createServer(app);
+const wss = module.exports = new WebSocketServer({server: server});
+
 const port = 1337;
 const baseDir = 'build/client';
 
@@ -17,28 +21,13 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(baseDir));
 app.use(bodyParser.urlencoded({extended: true}));
-
-app.use((req, res, next) => {
-	req.io = io;
-	next();
-});
-
-const server = app.listen(port, (err) => {
-	err ? console.error(err) : console.log(`app running on http://localhost:${port}`);
-});
-
-const io = require('socket.io')(server);
-
-io.on('connection', (socket) => {
-	console.log(`Client ${socket.id} connected`);
-
-	socket.on('disconnect', () => {
-		console.log('user disconnected');
-	});
-});
-
 app.use('/polls', pollsRouter);
 
+app.listen(port, () => {
+	console.log(`Server running on localhost:${port}`);
+});
+
+server.listen(8000);
 app.get('/', (req, res) => {
 	res.redirect('/polls');
 });

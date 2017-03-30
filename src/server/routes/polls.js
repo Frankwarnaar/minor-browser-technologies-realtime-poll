@@ -4,13 +4,15 @@ const express = require('express');
 const router = express.Router();
 const uuid = require('uuid');
 
+const wss = require('../app');
+
 if (typeof localStorage === "undefined" || localStorage === null) {
 	var LocalStorage = require('node-localstorage').LocalStorage;
 	var localStorage = new LocalStorage('./storage');
 }
 
 let activePolls = JSON.parse(localStorage.getItem('polls')) || [];
-
+let sockets = [];
 const polls = {
 	get() {
 		activePolls = JSON.parse(localStorage.getItem('polls')) || [];
@@ -24,6 +26,7 @@ const polls = {
 		localStorage.setItem('polls', JSON.stringify(activePolls));
 	}
 };
+
 
 router.get('/', (req, res) => {
 	res.render("index", {
@@ -80,9 +83,22 @@ router.post('/vote', (req, res) => {
 		}
 	});
 	polls.update(poll);
+	sockets.map(socket => {
+		socket.send(JSON.stringify(poll));
+	});
 	res.redirect(`/polls/results/${poll.id}`);
+});
 
-	req.io.sockets.emit('poll', poll);
+wss.on('connection', socket => {
+	console.log('Client connected');
+	sockets.push(socket);
+
+	socket.on('close', () => {
+		console.log('Client disconnected');
+		sockets = sockets.filter(single => {
+			return single !== socket;
+		});
+	});
 });
 
 module.exports = router;
