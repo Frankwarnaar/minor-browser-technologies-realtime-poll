@@ -17,7 +17,7 @@ $ npm run production
 ### Enhancements
 1. With javascript the user can add infinite answers to the poll
 
-The only breaking dependency is `getElementsByClassName`. This works in every browser except IE < 8.
+The only breaking dependency is `getElementsByClassName`. This works in every browser except IE < 8. When this doesn't work, you can still insert 5 answers.
 
 2. The results are shown with meter elements, these fall back to div's with div's inside them when not supported
 
