@@ -29,7 +29,28 @@ The browser tries to run a socket in a try statement. When this fails, it sets a
 
 4. If the browsers supports sockets, the results update without refreshing the page.
 
-Websockets are supported by IE10 > 9. Opera Mini doesn't support it.
+Websockets are supported by IE10 > 9. Opera Mini doesn't support it. When a vote comes in at the server the next code runs:
+```js
+router.post('/vote', (req, res) => {
+  // update the polls on the server from the storage to make sure the latest results will be send back to the clients.
+	polls.get(); 
+	const poll = activePolls.find(poll => poll.id === req.body.id);
+	// +1 the votes count of the voted answer
+  poll.answers.map(answer => {
+		if (answer.name === req.body.answer) {
+			answer.votes++;
+			poll.votes++;
+		}
+	});
+  // Update the storage with the updated poll.
+	polls.update(poll);
+  // Send the poll with the new votes count to the every active client.
+	sockets.map(socket => {
+		socket.send(JSON.stringify(poll));
+	});
+	res.redirect(`/polls/results/${poll.id}`);
+});
+```
 
 ## Accessability issues
 ### Images
@@ -53,3 +74,10 @@ Cookies and localstorage are not used within this app. When disabled, nothing br
 
 ### Mouse / trackpad
 The app works fine when the user has to tab through it. Inputs are wrapped inside labels, to make them accessable.
+
+### Slow internet
+The app is built very clean. No custom fonts, images or libraries are required. The only files loaded are:
+1. The page ~2kb
+2. css (not necessary) ~ 4kb
+3. js (not necessary) ~ 1kb
+Because of the small transfer size, the page even loads on GPRS (50kb/s) in `2.35s`. When the css or javascript doesn't load, you can still use the poll.
