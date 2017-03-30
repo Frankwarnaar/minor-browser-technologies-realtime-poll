@@ -19,7 +19,7 @@ NOTE: The clientside javascript shown below is transpiled to es5 before being se
 
 #### 1. With javascript the user can add infinite answers to the poll
 
-The only breaking dependency is `getElementsByClassName`. This works in every browser except IE < 8. When this doesn't work, you can still insert 5 answers. The next method is called when a new input has to be rendered:
+When the user has javascript, he/she can add infinite answers to a new poll. The next method is called when a new input has to be rendered:
 ```js
 renderInput() {
 	const $answers = document.getElementsByClassName('answer-input');
