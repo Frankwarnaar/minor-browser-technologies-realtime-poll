@@ -17,15 +17,56 @@ $ npm run production
 ### Enhancements
 1. With javascript the user can add infinite answers to the poll
 
-The only breaking dependency is `getElementsByClassName`. This works in every browser except IE < 8. When this doesn't work, you can still insert 5 answers.
+The only breaking dependency is `getElementsByClassName`. This works in every browser except IE < 8. When this doesn't work, you can still insert 5 answers. The next method is called when a new input has to be rendered:
+```js
+renderInput() {
+	const $answers = document.getElementsByClassName('answer-input');
+	const name = $answers[$answers.length - 1].getAttribute('name');
+	const number = Number(name.substr(6)) + 1;
+	const $label = document.createElement('label');
+	const $answer = document.createElement('input');
+
+	$answer.setAttribute('type', 'text');
+	$answer.setAttribute('name', `answer${number}`);
+	$answer.className = 'answer-input';
+
+	$label.appendChild($answer);
+	$label.insertAdjacentHTML('afterbegin', `Antwoord ${number}`);
+
+	this.app.$.answersContainer.appendChild($label);
+}
+```
+
 
 2. The results are shown with meter elements, these fall back to div's with div's inside them when not supported
 
-Meters are supported in every browser but IE. It's supported from IOS Safari 10.3, released march 27th, 2017.
+Meters are supported in every browser but IE. It's supported from IOS Safari 10.3, released march 27th, 2017. This is the code for the meters, with fallback inside the meter elements:
+```ejs
+<meter data-meter data-answer="<%= answer.name %>" max="<%= poll.votes %>" value="<%= answer.votes %>">
+	<div class="meter">
+		<div class="meter__fill" data-answer="<%= answer.name %>" style="width: <%= answer.votes / poll.votes * 100 %>%"></div>
+	</div>
+</meter>
+```
+
 
 3. The browser automaticly refreshes on the results page to keep the results up to date
 
-The browser tries to run a socket in a try statement. When this fails, it sets a timeout of `10s`. After this, it makes the pages refresh.
+The browser tries to run a socket in a try statement. When this fails, it sets a timeout of `10s`. After this, it makes the pages refresh. This happens with a try statement
+```js
+try {
+	const socket = new WebSocket('ws://localhost:8000', 'echo-protocol');
+
+	socket.onmessage = (e) => {
+		this.view.renderResults(JSON.parse(e.data));
+	};
+}
+catch (e) {
+	setTimeout(() => {
+		location.reload();
+	}, 10000);
+}
+```
 
 4. If the browsers supports sockets, the results update without refreshing the page.
 
@@ -51,6 +92,7 @@ router.post('/vote', (req, res) => {
 	res.redirect(`/polls/results/${poll.id}`);
 });
 ```
+The results are being updated with the data coming from the socket message.
 
 ## Accessability issues
 ### Images
