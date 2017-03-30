@@ -15,7 +15,9 @@ $ npm run production
 3. The user can check the results of a poll
 
 ### Enhancements
-1. With javascript the user can add infinite answers to the poll
+NOTE: The clientside javascript shown below is transpiled to es5 before being send to the client.
+
+#### 1. With javascript the user can add infinite answers to the poll
 
 The only breaking dependency is `getElementsByClassName`. This works in every browser except IE < 8. When this doesn't work, you can still insert 5 answers. The next method is called when a new input has to be rendered:
 ```js
@@ -38,7 +40,7 @@ renderInput() {
 ```
 
 
-2. The results are shown with meter elements, these fall back to div's with div's inside them when not supported
+#### 2. The results are shown with meter elements, these fall back to div's with div's inside them when not supported
 
 Meters are supported in every browser but IE. It's supported from IOS Safari 10.3, released march 27th, 2017. This is the code for the meters, with fallback inside the meter elements:
 ```ejs
@@ -50,7 +52,7 @@ Meters are supported in every browser but IE. It's supported from IOS Safari 10.
 ```
 
 
-3. The browser automaticly refreshes on the results page to keep the results up to date
+#### 3. The browser automaticly refreshes on the results page to keep the results up to date
 
 The browser tries to run a socket in a try statement. When this fails, it sets a timeout of `10s`. After this, it makes the pages refresh. This happens with a try statement
 ```js
@@ -68,7 +70,7 @@ catch (e) {
 }
 ```
 
-4. If the browsers supports sockets, the results update without refreshing the page.
+#### 4. If the browsers supports sockets, the results update without refreshing the page.
 
 Websockets are supported by IE10 > 9. Opera Mini doesn't support it. When a vote comes in at the server the next code runs:
 ```js
