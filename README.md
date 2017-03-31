@@ -72,7 +72,7 @@ catch (e) {
 
 #### 4. If the browsers supports sockets, the results update without refreshing the page.
 
-Websockets are supported by IE10 > 9. Opera Mini doesn't support it. When a vote comes in at the server the next code runs:
+Websockets are supported by IE > 9. Opera Mini doesn't support it. When a vote comes in at the server the next code runs:
 ```js
 router.post('/vote', (req, res) => {
   // update the polls on the server from the storage to make sure the latest results will be send back to the clients.
