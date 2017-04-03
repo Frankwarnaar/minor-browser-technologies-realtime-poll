@@ -12,6 +12,7 @@ class View {
 
 		$answer.setAttribute('type', 'text');
 		$answer.setAttribute('name', `answer${number}`);
+		$answer.setAttribute('placeholder', 'antwoord');
 		$answer.className = 'answer-input';
 
 		$label.appendChild($answer);
