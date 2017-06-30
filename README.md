@@ -15,7 +15,7 @@ $ npm run production
 3. The user can check the results of a poll
 
 ### Enhancements
-NOTE: The clientside javascript shown below is transpiled to es5 before being send to the client.
+NOTE: The clientside javascript shown below is transpiled to es5 before being sent to the client.
 
 #### 1. With javascript the user can add infinite answers to the poll
 
@@ -75,7 +75,7 @@ catch (e) {
 Websockets are supported by IE > 9. Opera Mini doesn't support it. When a vote comes in at the server the next code runs:
 ```js
 router.post('/vote', (req, res) => {
-  // update the polls on the server from the storage to make sure the latest results will be send back to the clients.
+  // update the polls on the server from the storage to make sure the latest results will be sent back to the clients.
 	polls.get(); 
 	const poll = activePolls.find(poll => poll.id === req.body.id);
 	// +1 the votes count of the voted answer
